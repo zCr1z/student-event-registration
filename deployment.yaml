@@ -1,42 +1,39 @@
 apiVersion: apps/v1
 kind: Deployment
-
 metadata:
-  name: student-event
-
+  name: q2-student-event
 spec:
   replicas: 3
 
   selector:
     matchLabels:
-      app: student-event
+      app: q2-student-event
 
   template:
     metadata:
       labels:
-        app: student-event
+        app: q2-student-event
 
     spec:
       containers:
-        - name: student-event
-          image: y1rd/student-event:v1
+        - name: q2-student-event
+          image: y1rd/q2-student-event:latest
           ports:
             - containerPort: 80
 
 ---
 apiVersion: v1
 kind: Service
-
 metadata:
-  name: student-event-service
+  name: q2-student-event-service
 
 spec:
   type: NodePort
 
   selector:
-    app: student-event
+    app: q2-student-event
 
   ports:
     - port: 80
       targetPort: 80
-      nodePort: 30011
+      nodePort: 30012
